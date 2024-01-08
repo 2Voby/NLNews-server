@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const NewsModel = new Schema({
   id: { type: String, unique: true, required: true },
-  title: { type: String, required: true },
+  title: { type: String, default: "" },
   image: { type: String, default: null },
   body: { type: String, default: "" },
   author: { type: String, default: "Liceum" },

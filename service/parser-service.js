@@ -61,12 +61,8 @@ class ParserService {
               post?.querySelector(".meta-date")?.textContent?.split(":")[1] ||
               null,
             postLink: postLink,
+            postImage: post?.querySelector(".wp-post-image")?.src,
           };
-
-          // if (postLink) {
-          //   let { postBody, images } = await this.parsePageInner(postLink);
-          //   newPost.body = postBody;
-          // }
 
           newPosts.push(newPost);
         }
@@ -85,11 +81,24 @@ class ParserService {
 
       for (let newPost of newIds) {
         await Utils.pause(1500);
+        let sentPostContent;
+        let sentPostResponce;
 
-        let { postContent, response } = await sendService.sendNewPost(newPost);
+        if (newPost.postImage) {
+          let { postContent, response } =
+            await sendService.sendNewPostWithPhoto(newPost);
+          sentPostContent = postContent;
+          sentPostResponce = response;
+        } else {
+          let { postContent, response } = await sendService.sendNewPost(
+            newPost
+          );
+          sentPostContent = postContent;
+          sentPostResponce = response;
+        }
         // має бути асинхронною
-        if (response.status == 200) {
-          await Utils.saveNewPost(postContent);
+        if (sentPostResponce?.status == 200) {
+          await Utils.saveNewPost(sentPostContent);
           console.log("saved");
         } else console.log("error while sending post");
       }

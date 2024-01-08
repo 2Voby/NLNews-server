@@ -15,9 +15,6 @@ class Utils {
   async saveNewPost(newPost) {
     await newsModel.create({
       id: newPost.id,
-      title: newPost.title,
-      author: newPost.author,
-      date: newPost.date,
       messageId: newPost.messageId,
     });
   }
