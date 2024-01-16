@@ -91,7 +91,7 @@ class ParserService {
           sentPostContent = postContent;
         }
 
-        await Utils.saveNewPost(sentPostContent);
+        await Utils.saveNewPost(newPost);
         console.log("saved");
       }
     } catch (error) {

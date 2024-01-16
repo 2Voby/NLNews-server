@@ -43,7 +43,8 @@ class SendService {
     message += `Автор: ${postContent.author}\n`;
     message += `<a href="${postContent.postLink}">Переглянути всю інформацію</a>\n`;
 
-    let chat_ids_arr = [CHANNEL_CHAT_ID, TEACHERS_CHAT_ID];
+    // let chat_ids_arr = [CHANNEL_CHAT_ID, TEACHERS_CHAT_ID]; // prod
+    let chat_ids_arr = [CHANNEL_CHAT_ID]; // dev
 
     let response;
     for (const CHAT_ID of chat_ids_arr) {
@@ -63,7 +64,8 @@ class SendService {
     const TEACHERS_CHAT_ID = -4069606119;
     const URI_API_SEND_PHOTO = `https://api.telegram.org/bot${TOKEN}/sendPhoto`;
 
-    let chat_ids_arr = [CHANNEL_CHAT_ID, TEACHERS_CHAT_ID];
+    // let chat_ids_arr = [CHANNEL_CHAT_ID, TEACHERS_CHAT_ID]; // prod
+    let chat_ids_arr = [CHANNEL_CHAT_ID]; // dev
 
     let response;
     for (const CHAT_ID of chat_ids_arr) {
