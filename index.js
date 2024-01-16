@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const router = require("./router/index");
 const errorMiddleware = require("./middlewares/error-middleware");
 const ParserService = require("./service/parser-service");
+const senderService = require("./service/sender-service");
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -32,7 +33,9 @@ const start = async () => {
     });
     app.listen(PORT, () => console.log(`Server started on PORT = ${PORT}`));
 
-    // визиваємо функцію кожних 30 секунд (хвилину в зібраному режимі)
+    // senderService.sendTestPost();
+
+    // // визиваємо функцію кожних 30 секунд (хвилину в зібраному режимі)
     await ParserService.parseAllPages("https://lyceum.ztu.edu.ua");
 
     setInterval(async () => {

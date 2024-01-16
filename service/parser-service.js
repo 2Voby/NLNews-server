@@ -82,25 +82,17 @@ class ParserService {
       for (let newPost of newIds) {
         await Utils.pause(1500);
         let sentPostContent;
-        let sentPostResponce;
 
         if (newPost.postImage) {
-          let { postContent, response } =
-            await sendService.sendNewPostWithPhoto(newPost);
+          let { postContent } = await sendService.sendNewPostWithPhoto(newPost);
           sentPostContent = postContent;
-          sentPostResponce = response;
         } else {
-          let { postContent, response } = await sendService.sendNewPost(
-            newPost
-          );
+          let { postContent } = await sendService.sendNewPost(newPost);
           sentPostContent = postContent;
-          sentPostResponce = response;
         }
-        // має бути асинхронною
-        if (sentPostResponce?.status == 200) {
-          await Utils.saveNewPost(sentPostContent);
-          console.log("saved");
-        } else console.log("error while sending post");
+
+        await Utils.saveNewPost(sentPostContent);
+        console.log("saved");
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
