@@ -10,9 +10,10 @@ class SendService {
   // async sendTestPost() {
   //   const TOKEN = process.env.TG_BOT_TOKEN;
   //   // const CHAT_ID = process.env.TG_CHAT_ID;
-  //   const CHAT_ID = -1001904185128;
+  //   // const CHAT_ID = -4069606119;
 
-  //   let chat_ids_arr = [-1001904185128, -1002087175979];
+  //   // let chat_ids_arr = [-1001904185128, -1002087175979];
+  //   let chat_ids_arr = [-1002019569143];
 
   //   const URI_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
 
@@ -33,7 +34,7 @@ class SendService {
   async sendNewPost(postContent) {
     const TOKEN = process.env.TG_BOT_TOKEN;
     const CHANNEL_CHAT_ID = process.env.TG_CHAT_ID;
-    const TEACHERS_CHAT_ID = -4069606119;
+    const TEACHERS_CHAT_ID = -1002019569143;
     const URI_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
 
     let message = ``;
@@ -61,7 +62,7 @@ class SendService {
   async sendNewPostWithPhoto(postContent) {
     const TOKEN = process.env.TG_BOT_TOKEN;
     const CHANNEL_CHAT_ID = process.env.TG_CHAT_ID;
-    const TEACHERS_CHAT_ID = -4069606119;
+    const TEACHERS_CHAT_ID = -1002019569143;
     const URI_API_SEND_PHOTO = `https://api.telegram.org/bot${TOKEN}/sendPhoto`;
 
     let chat_ids_arr = [CHANNEL_CHAT_ID, TEACHERS_CHAT_ID]; // prod
