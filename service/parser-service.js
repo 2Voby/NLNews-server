@@ -81,14 +81,11 @@ class ParserService {
 
       for (let newPost of newIds) {
         await Utils.pause(1500);
-        let sentPostContent;
 
         if (newPost.postImage) {
-          let { postContent } = await sendService.sendNewPostWithPhoto(newPost);
-          sentPostContent = postContent;
+          await sendService.sendNewPostWithPhoto(newPost);
         } else {
-          let { postContent } = await sendService.sendNewPost(newPost);
-          sentPostContent = postContent;
+          await sendService.sendNewPost(newPost);
         }
 
         await Utils.saveNewPost(newPost);
