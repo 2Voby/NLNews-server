@@ -10,6 +10,24 @@ const adminService = require("./admin-service");
 
 // const { axios } = require("axios");
 class SendService {
+  // відправка інформації з телеграм бота
+
+  async sendTgMessage(content, groupIds = [], author = null) {
+    const TOKEN = process.env.TG_BOT_TOKEN;
+    const URI_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+    let message = content.text;
+    message += "\n\n";
+    message += `Автор: ${!author ? "NL News" : author}`;
+
+    for (const groupId of groupIds) {
+      await axios.post(URI_API, {
+        chat_id: groupId,
+        text: message,
+      });
+    }
+  }
+
+  // відправка інформації з сайту ліцею та розкладу
   async sendNewPost(postContent, from = "site", groupIds = null) {
     const TOKEN = process.env.TG_BOT_TOKEN;
 

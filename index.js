@@ -10,6 +10,8 @@ const senderService = require("./service/sender-service");
 const userModel = require("./models/user-model");
 const ApiError = require("./exceptions/api-error");
 const serviceModel = require("./models/service-model");
+const TelegramAPI = require("node-telegram-bot-api");
+const botApiService = require("./service/bot-api-service");
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -36,7 +38,9 @@ const start = async () => {
     });
     app.listen(PORT, () => console.log(`Server started on PORT = ${PORT}`));
 
-    // senderService.sendTestPost();
+    const bot = new TelegramAPI(process.env.TG_BOT_TOKEN, { polling: true });
+    // підключаемо апі від бота
+    botApiService.listenTelegram(bot);
 
     // // визиваємо функцію кожних 30 секунд (хвилину в зібраному режимі)
 
